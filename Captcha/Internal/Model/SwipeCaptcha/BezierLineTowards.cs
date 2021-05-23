@@ -1,17 +1,17 @@
-﻿namespace LDFCore.Common.Captcha.Enums
+namespace Captcha.Internal.Model.SwipeCaptcha
 {
     /// <summary>
-    /// 验证码贝塞尔曲线朝向
+    /// 贝塞尔曲线朝向
     /// </summary>
-    public enum CaptchaBezierTowards
+    public enum BezierLineTowards
     {
         /// <summary>
-        /// 内（凹）
+        /// 内
         /// </summary>
         Inner = 1,
 
         /// <summary>
-        /// 外（凸）
+        /// 外
         /// </summary>
         Outside = 2,
     }

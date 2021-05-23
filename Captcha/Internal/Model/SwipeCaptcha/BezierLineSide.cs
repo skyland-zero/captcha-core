@@ -1,9 +1,9 @@
-﻿namespace LDFCore.Common.Captcha.Enums
+namespace Captcha.Internal.Model.SwipeCaptcha
 {
     /// <summary>
-    /// 验证码贝塞尔曲线所在边
+    /// 滑动验证码拼图贝塞尔曲线所在边
     /// </summary>
-    public enum CaptchaBezierLineSide
+    public enum BezierLineSide
     {
         /// <summary>
         /// 左边
