@@ -74,33 +74,43 @@ namespace Captcha.Configuration
         public bool PuzzleRandomScaled { get; set; } = true;
 
         /// <summary>
+        /// 背景拼图阴影颜色
+        /// </summary>
+        public string BgPuzzleColor { get; set; } = "#000000";
+
+        /// <summary>
+        /// 背景拼图阴影颜色
+        /// </summary>
+        public float BgPuzzleAlpha { get; set; } = 0.5F;
+
+        /// <summary>
         /// 背景拼图边框颜色
         /// </summary>
-        public string BgPuzzlePathColor { get; set; }
+        public string BgPuzzlePathColor { get; set; } = "#FFFFFF";
 
         /// <summary>
         /// 背景拼图边框宽度
         /// </summary>
-        public double BgPuzzlePathWidth { get; set; } = 1;
+        public float BgPuzzlePathWidth { get; set; } = 1.5F;
 
         /// <summary>
         /// 背景拼图透明度
         /// </summary>
-        public double BgPuzzlePathAlpha { get; set; } = 0.5;
+        public float BgPuzzlePathAlpha { get; set; } = 0.5F;
 
         /// <summary>
         /// 拼图滑块边框颜色
         /// </summary>
-        public string SpPuzzlePathColor { get; set; }
+        public string SpPuzzlePathColor { get; set; } = "#000000";
 
         /// <summary>
         /// 拼图滑块边框宽度
         /// </summary>
-        public double SpPuzzlePathWidth { get; set; } = 1;
+        public float SpPuzzlePathWidth { get; set; } = 1.5F;
 
         /// <summary>
         /// 拼图滑块边框透明度
         /// </summary>
-        public double SpPuzzlePathAlpha { get; set; } = 0.5;
+        public float SpPuzzlePathAlpha { get; set; } = 0.5F;
     }
 }
