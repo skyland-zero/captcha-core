@@ -26,7 +26,7 @@ namespace Captcha.Internal.Swipe
         private readonly CaptchaOptions _options;
 
         private static Random _rand = new Random();
-        private static ShapeGraphicsOptions _antialiasShapeGraphicsOptions => new ShapeGraphicsOptions()
+        private static DrawingOptions _antialiasDrawOptions => new DrawingOptions()
         {
             GraphicsOptions = new GraphicsOptions
             {
@@ -34,7 +34,7 @@ namespace Captcha.Internal.Swipe
                 AntialiasSubpixelDepth = 200
             }
         };
-        private static ShapeGraphicsOptions _destOutShapeGraphicsOptions => new ShapeGraphicsOptions()
+        private static DrawingOptions _destOutDrawOptions => new DrawingOptions()
         {
             GraphicsOptions = new GraphicsOptions
             {
@@ -62,21 +62,21 @@ namespace Captcha.Internal.Swipe
             var imagePath = imagePathBuilder.Build();
 
             var sm = imagePath.Clip(path);
-            var swipeImg = image.Clone(x => x.Fill(_destOutShapeGraphicsOptions, Color.Red, sm));
-            swipeImg.Mutate(x => x.Draw(_antialiasShapeGraphicsOptions, Color.ParseHex(_options.Swipe.SpPuzzlePathColor).WithAlpha(_options.Swipe.SpPuzzlePathAlpha), _options.Swipe.SpPuzzlePathWidth, path));
+            var swipeImg = image.Clone(x => x.Fill(_destOutDrawOptions, Color.Red, sm));
+            swipeImg.Mutate(x => x.Draw(_antialiasDrawOptions, Color.ParseHex(_options.Swipe.SpPuzzlePathColor).WithAlpha(_options.Swipe.SpPuzzlePathAlpha), _options.Swipe.SpPuzzlePathWidth, path));
             swipeImg.Mutate(x => x.Crop(new Rectangle(new Point((int)Math.Ceiling(path.Bounds.Left), 0), new Size((int)Math.Ceiling(path.Bounds.Width), image.Height))));
 
 
             //处理背景图片
-            image.Mutate(x => x.Fill(_antialiasShapeGraphicsOptions, Color.ParseHex(_options.Swipe.BgPuzzleColor).WithAlpha(_options.Swipe.BgPuzzleAlpha), path));
-            image.Mutate(x => x.Draw(_antialiasShapeGraphicsOptions, Color.ParseHex(_options.Swipe.BgPuzzlePathColor).WithAlpha(_options.Swipe.BgPuzzlePathAlpha), _options.Swipe.BgPuzzlePathWidth, path));
+            image.Mutate(x => x.Fill(_antialiasDrawOptions, Color.ParseHex(_options.Swipe.BgPuzzleColor).WithAlpha(_options.Swipe.BgPuzzleAlpha), path));
+            image.Mutate(x => x.Draw(_antialiasDrawOptions, Color.ParseHex(_options.Swipe.BgPuzzlePathColor).WithAlpha(_options.Swipe.BgPuzzlePathAlpha), _options.Swipe.BgPuzzlePathWidth, path));
 
             //处理背景混淆图片
             if (_options.Swipe.GenerateMix)
             {
                 var mixPath = GetMixPath(image, path);
-                image.Mutate(x => x.Fill(_antialiasShapeGraphicsOptions, Color.ParseHex(_options.Swipe.BgPuzzleColor).WithAlpha(_options.Swipe.BgPuzzleAlpha), mixPath));
-                image.Mutate(x => x.Draw(_antialiasShapeGraphicsOptions, Color.ParseHex(_options.Swipe.BgPuzzlePathColor).WithAlpha(_options.Swipe.BgPuzzlePathAlpha), _options.Swipe.BgPuzzlePathWidth, mixPath));
+                image.Mutate(x => x.Fill(_antialiasDrawOptions, Color.ParseHex(_options.Swipe.BgPuzzleColor).WithAlpha(_options.Swipe.BgPuzzleAlpha), mixPath));
+                image.Mutate(x => x.Draw(_antialiasDrawOptions, Color.ParseHex(_options.Swipe.BgPuzzlePathColor).WithAlpha(_options.Swipe.BgPuzzlePathAlpha), _options.Swipe.BgPuzzlePathWidth, mixPath));
             }
             return (image, swipeImg, (int)Math.Round(path.Bounds.X));
         }
