@@ -1,6 +1,9 @@
 ﻿namespace Captcha.Model
 {
-    public class CaptchaCacheModel
+    /// <summary>
+    /// 验证码返回
+    /// </summary>
+    public class CaptchaOutput
     {
         /// <summary>
         /// 验证码唯一值
@@ -18,8 +21,14 @@
         public string SecretIV { get; set; }
 
         /// <summary>
-        /// X坐标
+        /// 背景图片
         /// </summary>
-        public int SwipeX { get; set; }
+        public string BgImage { get; set; }
+
+        /// <summary>
+        /// 滑动拼图块
+        /// </summary>
+        public string SpImage { get; set; }
+
     }
 }
